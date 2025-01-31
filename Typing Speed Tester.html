@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Speed Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            width: 300px;
+            padding: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Typing Speed Test</h2>
+    <p id="text">Hello world</p> <!-- The given text -->
+    
+    <input type="text" id="inputText" placeholder="Start typing..." oninput="checkTyping()">
+    
+    <p id="result"></p>
+
+    <script>
+        let startTime = null;
+
+        function checkTyping() {
+            const input = document.getElementById("inputText").value;
+            const text = document.getElementById("text").innerText.trim();
+
+            // Start timer when user starts typing
+            if (!startTime && input.length > 0) {
+                startTime = new Date();
+            }
+
+            // If typed text matches the original, calculate time
+            if (input === text) {
+                let timeTaken = (new Date() - startTime) / 1000;
+                document.getElementById("result").innerText = `You typed in ${timeTaken.toFixed(2)} seconds!`;
+
+                // Reset for next attempt
+                startTime = null;
+            }
+        }
+    </script>
+
+</body>
+</html>
